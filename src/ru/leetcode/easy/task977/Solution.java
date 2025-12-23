@@ -9,10 +9,20 @@ import java.util.Arrays;
 class Solution {
     public int[] sortedSquares(int[] nums) {
         int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            result[i] = nums[i] * nums[i];
+        int left = 0;
+        int right = nums.length - 1;
+        int pos = nums.length - 1;
+        while (left <= right) {
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                result[pos] = nums[left] * nums[left];
+                pos--;
+                left++;
+            } else {
+                result[pos] = nums[right] * nums[right];
+                pos--;
+                right--;
+            }
         }
-        Arrays.sort(result);
         return result;
     }
 }

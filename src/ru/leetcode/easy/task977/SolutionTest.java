@@ -30,11 +30,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
     @Test
-    public void leetcodeTest() {
+    public void leetcodeTest1() {
         Solution solution = new Solution();
         int[] nums = new int[]{-4, -1, 0, 3, 10};
         int[] expected = new int[]{0, 1, 9, 16, 100};
         int[] actual = solution.sortedSquares(nums);
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void leetcodeTest2() {
+        Solution solution = new Solution();
+        int[] nums = new int[]{-7, -3, 2, 3, 11};
+        int[] expected = new int[]{4, 9, 9, 49, 121};
+        int[] actual = solution.sortedSquares(nums);
+        assertArrayEquals(expected, actual);
+    }
+
 }
