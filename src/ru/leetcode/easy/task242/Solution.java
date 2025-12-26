@@ -1,6 +1,7 @@
 package ru.leetcode.easy.task242;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author rus.sadykov
@@ -8,10 +9,16 @@ import java.util.Arrays;
  */
 class Solution {
     public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        Map<Character, Integer> freqMap = new HashMap<>();
         char[] sChars = s.toCharArray();
+        for (char c : sChars) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        }
         char[] tChars = t.toCharArray();
-        Arrays.sort(sChars);
-        Arrays.sort(tChars);
-        return Arrays.equals(sChars, tChars);
+        for (char c : tChars) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) - 1);
+        }
+        return freqMap.entrySet().stream().noneMatch(value -> value.getValue() > 0);
     }
 }

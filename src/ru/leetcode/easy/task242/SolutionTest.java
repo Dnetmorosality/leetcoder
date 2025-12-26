@@ -39,4 +39,34 @@ class SolutionTest {
         boolean actual = solution.isAnagram(s, t);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void cornerCase1() {
+        Solution solution = new Solution();
+        String s = "a";
+        String t = "b";
+        boolean expected = false;
+        boolean actual = solution.isAnagram(s, t);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void cornerCase2() {
+        Solution solution = new Solution();
+        String s = "aacc";
+        String t = "ccac";
+        boolean expected = false;
+        boolean actual = solution.isAnagram(s, t);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void leetcodeCase3() {
+        Solution solution = new Solution();
+        String s = "acacbac";
+        String t = "bbbbbac";
+        boolean expected = false;
+        boolean actual = solution.isAnagram(s, t);
+        assertEquals(expected, actual);
+    }
 }
