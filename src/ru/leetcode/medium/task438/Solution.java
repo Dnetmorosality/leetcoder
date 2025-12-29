@@ -10,22 +10,29 @@ public class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> result = new ArrayList<>();
         if (s.length() < p.length()) return result;
-        for (int i = 0; i <= s.length() - p.length(); i++) {
+        int size = s.length() - p.length();
+        for (int i = 0; i <= size; i++) {
             if (isAnagram(s.substring(i, p.length() + i), p)) result.add(i);
         }
         return result;
     }
 
     private boolean isAnagram(String s1, String s2) {
-        Map<Character, Integer> freqMap = new HashMap<>();
         char[] s1chars = s1.toCharArray();
         char[] s2chars = s2.toCharArray();
-        for (char c : s1chars) {
-            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        boolean allEq = true;
+        for (int i = 1; i < s2chars.length; i++) {
+            if (s2chars[i] != s2chars[i - 1]) {
+                allEq = false;
+                break;
+            }
         }
-        for (char c : s2chars) {
-            freqMap.put(c, freqMap.getOrDefault(c, 0) - 1);
+        if (allEq) {
+            return Arrays.equals(s1chars, s2chars);
+        } else {
+            Arrays.sort(s1chars);
+            Arrays.sort(s2chars);
+            return Arrays.equals(s1chars, s2chars);
         }
-        return freqMap.entrySet().stream().noneMatch(item -> item.getValue() > 0);
     }
 }
