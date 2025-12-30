@@ -43,4 +43,14 @@ class SolutionTest {
         boolean actual = solution.checkInclusion(s1, s2);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void leetcodeCase3() {
+        Solution solution = new Solution();
+        String s1 = "adc";
+        String s2 = "dcda";
+        boolean expected = true;
+        boolean actual = solution.checkInclusion(s1, s2);
+        assertEquals(expected, actual);
+    }
 }
