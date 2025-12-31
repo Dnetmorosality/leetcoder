@@ -17,7 +17,7 @@ class Solution {
         for (int i = 1; i < intervals.length; i++) {
             if (mergeArr[count][1] >= intervals[i][0] && mergeArr[count][1] <= intervals[i][1]) {
                 mergeArr[count][1] = intervals[i][1];
-            } else if (mergeArr[count][0] <= intervals[i][0] && mergeArr[count][1] >= intervals[i][1]) {
+            } else if (mergeArr[count][1] >= intervals[i][1]) {
                 continue;
             } else {
                 count++;
