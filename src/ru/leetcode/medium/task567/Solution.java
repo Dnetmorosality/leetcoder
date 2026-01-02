@@ -1,4 +1,4 @@
-package ru.leetcode.medium.m567;
+package ru.leetcode.medium.task567;
 
 import java.util.HashMap;
 import java.util.Map;

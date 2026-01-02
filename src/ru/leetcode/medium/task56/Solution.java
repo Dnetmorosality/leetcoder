@@ -1,4 +1,4 @@
-package ru.leetcode.medium.m56;
+package ru.leetcode.medium.task56;
 
 import java.util.Arrays;
 import java.util.Comparator;

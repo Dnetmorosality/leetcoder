@@ -1,4 +1,4 @@
-package ru.leetcode.medium.m56;
+package ru.leetcode.medium.task56;
 
 import org.junit.jupiter.api.Test;
 
