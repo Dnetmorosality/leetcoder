@@ -31,6 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
  1 <= s.length <= 500
  s consists of lowercase English letters.
+
+ https://leetcode.com/problems/partition-labels/description/
  */
 
 class SolutionTest {
@@ -60,5 +62,14 @@ class SolutionTest {
         List<Integer> expected2 = List.of(10);
         List<Integer> actual2 = solution.partitionLabels(s2);
         assertEquals(expected2, actual2);
+    }
+
+    @Test
+    public void leetcodeCase3() {
+        Solution solution = new Solution();
+        String s = "caedbdedda";
+        List<Integer> expected = List.of(1, 9);
+        List<Integer> actual = solution.partitionLabels(s);
+        assertEquals(expected, actual);
     }
 }
