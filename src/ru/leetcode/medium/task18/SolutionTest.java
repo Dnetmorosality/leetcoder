@@ -70,4 +70,24 @@ class SolutionTest {
         List<List<Integer>> actual = solution.fourSum(nums, target);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void cornerCase3() {
+        Solution solution = new Solution();
+        int[] nums = new int[]{1000000000, 1000000000, 1000000000, 1000000000};
+        int target = -294967296;
+        List<List<Integer>> expected = Collections.emptyList();
+        List<List<Integer>> actual = solution.fourSum(nums, target);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void cornerCase4() {
+        Solution solution = new Solution();
+        int[] nums = new int[]{-1000000000, -1000000000, 1000000000, -1000000000, -1000000000};
+        int target = 294967296;
+        List<List<Integer>> expected = Collections.emptyList();
+        List<List<Integer>> actual = solution.fourSum(nums, target);
+        assertEquals(expected, actual);
+    }
 }
