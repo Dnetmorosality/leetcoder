@@ -10,29 +10,21 @@ public class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> result = new ArrayList<>();
         if (s.length() < p.length()) return result;
-        int size = s.length() - p.length();
-        for (int i = 0; i <= size; i++) {
-            if (isAnagram(s.substring(i, p.length() + i), p)) result.add(i);
+        int[] freqS = new int[26];
+        int[] freqP = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            freqP[p.charAt(i) - 'a']++;
+            freqS[s.charAt(i) - 'a']++;
+        }
+        if (Arrays.equals(freqP, freqS)) result.add(0);
+        for (int i = p.length(); i < s.length(); i++) {
+            int indexAdd = s.charAt(i) - 'a';
+            int pos = i - p.length();
+            int indexRemove = s.charAt(pos) - 'a';
+            freqS[indexAdd]++;
+            freqS[indexRemove]--;
+            if (Arrays.equals(freqP, freqS)) result.add(pos + 1);
         }
         return result;
-    }
-
-    private boolean isAnagram(String s1, String s2) {
-        char[] s1chars = s1.toCharArray();
-        char[] s2chars = s2.toCharArray();
-        boolean allEq = true;
-        for (int i = 1; i < s2chars.length; i++) {
-            if (s2chars[i] != s2chars[i - 1]) {
-                allEq = false;
-                break;
-            }
-        }
-        if (allEq) {
-            return Arrays.equals(s1chars, s2chars);
-        } else {
-            Arrays.sort(s1chars);
-            Arrays.sort(s2chars);
-            return Arrays.equals(s1chars, s2chars);
-        }
     }
 }
