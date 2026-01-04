@@ -1,6 +1,9 @@
 package ru.leetcode.hard.task480;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author rus.sadykov
@@ -10,15 +13,34 @@ class Solution {
     public double[] medianSlidingWindow(int[] nums, int k) {
         double[] result = new double[nums.length - k + 1];
         int[] ints = new int[k];
-        for (int i = 0; i < nums.length - k + 1; i++) {
-            System.arraycopy(nums, i, ints, 0, k);
+        System.arraycopy(nums, 0, ints, 0, k);
+        if (k > 10000) {
             Arrays.parallelSort(ints);
-            if (k % 2 != 0) {
-                result[i] = ints[k / 2];
-            } else {
-                result[i] = (double) ((long) ints[k / 2] + ints[k / 2 - 1]) / 2;
-            }
+        } else {
+            Arrays.sort(ints);
+        }
+        List<Integer> window = new ArrayList<>(k);
+        for (int i : ints) {
+            window.add(i);
+        }
+        result[0] = getMedian(window, k);
+        for (int i = k; i < nums.length; i++) {
+            int numRemove = nums[i - k];
+            int numAdd = nums[i];
+            int idxRemove = Collections.binarySearch(window, numRemove);
+            window.remove(idxRemove);
+            int idxAdd = Collections.binarySearch(window, numAdd);
+            window.add(idxAdd >= 0 ? idxAdd : -idxAdd - 1, numAdd);
+            result[i - k  + 1] = getMedian(window, k);
         }
         return result;
+    }
+
+    private double getMedian(List<Integer> window, int k) {
+        if (k % 2 != 0) {
+            return window.get(k / 2);
+        } else {
+            return (double) ((long) window.get(k / 2) + window.get(k / 2 - 1)) / 2;
+        }
     }
 }
