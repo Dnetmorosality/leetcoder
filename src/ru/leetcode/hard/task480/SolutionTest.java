@@ -76,4 +76,14 @@ class SolutionTest {
         double[] actual = solution.medianSlidingWindow(nums, k);
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void cornerCase2() {
+        Solution solution = new Solution();
+        int[] nums = new int[]{1, 1, 1, 1};
+        int k = 2;
+        double[] expected = new double[]{1.0, 1.0, 1.0};
+        double[] actual = solution.medianSlidingWindow(nums, k);
+        assertArrayEquals(expected, actual);
+    }
 }
