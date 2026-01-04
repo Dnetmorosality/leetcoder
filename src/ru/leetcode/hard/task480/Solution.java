@@ -1,6 +1,8 @@
 package ru.leetcode.hard.task480;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
@@ -11,7 +13,7 @@ class Solution {
     PriorityQueue<Integer> left = new PriorityQueue<>(Collections.reverseOrder());
     PriorityQueue<Integer> right = new PriorityQueue<>();
     int k;
-
+    Map<Integer, Integer> exp = new HashMap<>();
     public double[] medianSlidingWindow(int[] nums, int k) {
         double[] res = new double[nums.length - k + 1];
         this.k = k;
@@ -19,7 +21,7 @@ class Solution {
             add(nums[i]);
             if (i >= k - 1) {
                 res[i - k + 1] = getMedian(k);
-                remove(nums[i - k + 1]);
+                lazyRemove(nums[i - k + 1]);
             }
         }
         return res;
@@ -34,15 +36,22 @@ class Solution {
         balance();
     }
 
-    private void remove(int num) {
-        if (num > left.peek()) {
-            right.remove(num);
-        } else {
-            left.remove(num);
+    private void lazyRemove(int num) {
+        exp.put(num, exp.getOrDefault(num, 0) + 1);
+        if (exp.getOrDefault(num, 0) > 0) {
+            if (num > left.peek() && num == right.peek()) {
+                right.poll();
+                exp.put(num, exp.get(num) - 1);
+            } else if (num == left.peek()) {
+                left.poll();
+                exp.put(num, exp.get(num) - 1);
+            } else {
+                left.remove(num);
+                exp.put(num, exp.get(num) - 1);
+            }
         }
         balance();
     }
-
 
     private void balance() {
         if (left.size() > right.size() + 1) {
