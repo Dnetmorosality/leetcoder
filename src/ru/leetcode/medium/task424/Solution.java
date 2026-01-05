@@ -12,26 +12,28 @@ class Solution {
         for (int i = 0; i < s.length(); i++) {
             charsCode.add(s.charAt(i) - 'A');
         }
-        int count = 0;
+        int left = 0;
         int window = k + 1;
         int result = 0;
-        while (count + window <= charsCode.size()) {
-            List<Integer> subList = charsCode.subList(count, count + window);
-            Map.Entry<Integer, Integer> maxValueMap = getMaxValueMap(getFreqMap(subList));
+        Map<Integer, Integer> freqMap = getFreqMap(charsCode, left, window);
+        while (left + window <= charsCode.size()) {
+            Map.Entry<Integer, Integer> maxValueMap = getMaxValueMap(freqMap);
             if (maxValueMap != null && maxValueMap.getValue() + k >= window) {
                 if (result < window) result = window;
+                if (left + window < charsCode.size()) freqMap.put(charsCode.get(left + window), freqMap.getOrDefault(charsCode.get(left + window), 0) + 1);
                 window++;
             } else {
                 window = k + 1;
-                count++;
+                left++;
+                freqMap = getFreqMap(charsCode, left, left + window);
             }
         }
         return result;
     }
 
-    private Map<Integer, Integer> getFreqMap(List<Integer> charsCode) {
+    private Map<Integer, Integer> getFreqMap(List<Integer> charsCode, int left, int right) {
         Map<Integer, Integer> freqMap = new HashMap<>();
-        for (int i = 0; i < charsCode.size(); i++) {
+        for (int i = left; i < right; i++) {
             freqMap.put(charsCode.get(i), freqMap.getOrDefault(charsCode.get(i), 0) + 1);
         }
         return freqMap;
