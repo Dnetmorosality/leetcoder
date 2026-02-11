@@ -82,4 +82,14 @@ public class SolutionTest {
         List<Integer> actual = solution.findSubstring(s, words);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void leetcodeCase5() {
+        Solution solution = new Solution();
+        String s = "aaa";
+        String[] words = new String[]{"a","a"};
+        List<Integer> expected = List.of(0,1);
+        List<Integer> actual = solution.findSubstring(s, words);
+        assertEquals(expected, actual);
+    }
 }
