@@ -57,4 +57,13 @@ class SolutionTest {
         int actual = solution.maxProfit(prices);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void leetcodeCase4() {
+        Solution solution = new Solution();
+        int[] prices = new int[]{1, 7, 4, 2};
+        int expected = 6;
+        int actual = solution.maxProfit(prices);
+        assertEquals(expected, actual);
+    }
 }
