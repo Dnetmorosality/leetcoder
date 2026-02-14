@@ -5,18 +5,21 @@ import java.util.Map;
 
 class Solution {
     public int longestConsecutive(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Boolean> map = new HashMap<>();
         for (int num : nums) {
-            map.put(num, 0);
+            map.put(num, true);
         }
         int result = 0;
         int count = 1;
         for (int num : nums) {
-            while (map.containsKey(num + count)) {
-                count++;
+            if (map.get(num)) {
+                while (map.containsKey(num + count)) {
+                    map.put(num + count, false);
+                    count++;
+                }
+                result = Math.max(count, result);
+                count = 1;
             }
-            result = Math.max(count, result);
-            count = 1;
         }
         return result;
     }
