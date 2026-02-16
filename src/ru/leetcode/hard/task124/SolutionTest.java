@@ -73,21 +73,41 @@ class SolutionTest {
     }
 
     @Test
-    public void leetcodeCase3() {
+    public void leetcodeCase4() {
         Solution solution = new Solution();
-        List<Integer> src = new ArrayList<>(Arrays.asList(1, 2, -3, 5, 4, 10, 9, null, null, 3, null, null, 3));
+        List<Integer> src = new ArrayList<>(Arrays.asList(5,4,8,11,null,13,4,7,2,null,null,null,1));
         TreeNode root = createTree(src);
-        int expected = 19;
+        int expected = 48;
         int actual = solution.maxPathSum(root);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void leetcodeCase4() {
+    public void leetcodeCase5() {
         Solution solution = new Solution();
-        List<Integer> src = new ArrayList<>(Arrays.asList(1,2,null,3,null,4,null,5));
+        List<Integer> src = new ArrayList<>(Arrays.asList(1,0,1,1,2,0,-1,0,1,-1,0,-1,0,1,0));
         TreeNode root = createTree(src);
-        int expected = 15;
+        int expected = 4;
+        int actual = solution.maxPathSum(root);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void leetcodeCase6() {
+        Solution solution = new Solution();
+        List<Integer> src = new ArrayList<>(Arrays.asList(-1,5,null,4,null,null,2,-4));
+        TreeNode root = createTree(src);
+        int expected = 11;
+        int actual = solution.maxPathSum(root);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void leetcodeCase7() {
+        Solution solution = new Solution();
+        List<Integer> src = new ArrayList<>(Arrays.asList(9,6,-3,null,null,-6,2,null,null,2,null,-6,-6,-6));
+        TreeNode root = createTree(src);
+        int expected = 16;
         int actual = solution.maxPathSum(root);
         assertEquals(expected, actual);
     }
